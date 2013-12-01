@@ -11,12 +11,12 @@ Apart from being Open Source and fully configurable, Clippy has some features cu
 Furthermore, the clipboard interface makes Clippy really convenient when one just wants to quickly check a structure. 
 
 Here's a list of input formats that are read from clipboard and rendered in Clippy:
-ChEMBL IDs (via ChEMBL look-up)
-SMILES (via RDKit)
-InChI Strings (via RDKit)
-InChI Keys (via ChEMBL look-up)
-Nomenclature (via OPSIN)
-Images (via OSRA)
+* ChEMBL IDs (via ChEMBL look-up)
+* SMILES (via RDKit)
+* InChI Strings (via RDKit)
+* InChI Keys (via ChEMBL look-up)
+* Nomenclature (via OPSIN)
+* Images (via OSRA)
 
 Technical notes and dependencies 
 Clippy uses web services calls mainly to Michał Nowotka's Beaker server.
