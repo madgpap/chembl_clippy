@@ -92,7 +92,7 @@ def string2ctab(s):
     """Convert a short string (no spaces) to smiles or None otherwise"""
     ctab = None
     WS_URL = Settings.Instance().getBaseURL() + '/smiles2ctab/{}'
-    if (len(s) < 100) and (" " not in s) and ("\n" not in s):
+    if (len(s) <= 250) and (" " not in s) and ("\n" not in s):
         try:
             ctab = urllib2.urlopen(WS_URL.format(base64.b64encode(s))).read()
         except:
@@ -148,7 +148,7 @@ def image2ctab(img):
 
 def isID(s):
     "ChEMBL IDs start with CHEMBL"
-    return s.strip().upper().startswith('CHEMBL') and len(s) < 15
+    return s.strip().upper().startswith('CHEMBL') and len(s) <= 15
 
 
 def isInChI(s):
