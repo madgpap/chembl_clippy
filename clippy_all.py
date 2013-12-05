@@ -10,6 +10,7 @@ import wx
 import requests
 import base64
 import urllib2
+import traceback
 import StringIO
 
 import platform
@@ -60,6 +61,7 @@ def smi2ctab(smi):
         WS_URL = Settings.Instance().getBaseURL() + '/smiles2ctab/{}'
         ctab = urllib2.urlopen(WS_URL.format(base64.b64encode(smi))).read()
     except:
+        traceback.print_exc()
         pass
     return ctab
 
@@ -70,6 +72,7 @@ def ctab2smi(ctab):
     try:
         cansmi = urllib2.urlopen(WS_URL.format(base64.b64encode(ctab))).read()
     except:
+        traceback.print_exc()
         pass
     return cansmi
 
@@ -106,6 +109,7 @@ def ctab2inchi(ctab):
     try:
         inchi = urllib2.urlopen(WS_URL.format(base64.b64encode(ctab))).read()
     except:
+        traceback.print_exc()
         pass
     return inchi
 
@@ -116,6 +120,7 @@ def inchi2ctab(inchi):
     try:
         ctab = urllib2.urlopen(WS_URL.format(base64.b64encode(inchi))).read()
     except:
+        traceback.print_exc()
         pass
     return ctab
 
@@ -126,6 +131,7 @@ def inchi2inchiKey(inchi):
     try:
         inchikey = urllib2.urlopen(WS_URL.format(base64.b64encode(inchi))).read()
     except:
+        traceback.print_exc()
         pass
     return inchikey
 
@@ -149,6 +155,10 @@ def image2ctab(img):
 def isID(s):
     "ChEMBL IDs start with CHEMBL"
     return s.strip().upper().startswith('CHEMBL') and len(s) <= 15
+
+def isctab(s):
+    "CTABs contain M  END"
+    return s.find('M  END')>0
 
 
 def isInChI(s):
@@ -274,10 +284,10 @@ class MyFrame (wx.Frame):
         srvset.ShowModal()
         # srvset.Destroy()
 
-    def check(self, s, type):
-        if type == 'text' and self.cliptype == 'text':
+    def check(self, s, typ):
+        if typ == 'text' and self.cliptype == 'text':
             return self.clip != s
-        if type == 'image' and self.cliptype == 'image':
+        if typ == 'image' and self.cliptype == 'image':
             return self.clip.GetData() != s.GetData()
         else:
             return True
@@ -285,12 +295,12 @@ class MyFrame (wx.Frame):
     def OnDrawClipboard(self, event):
         # print 'got click'
         ctab = None
-        s, type = self.GetTextFromClipboard()
-        if self.check(s, type):
+        s, typ = self.GetTextFromClipboard()
+        if self.check(s, typ):
             # print 'not same'
             self.clip = s
-            self.cliptype = type
-            if type == 'text':
+            self.cliptype = typ
+            if typ == 'text':
                 if isID(s):
                     smi = id2smi(s.upper())
                     ctab = smi2ctab(smi)
@@ -299,14 +309,17 @@ class MyFrame (wx.Frame):
                     ctab = smi2ctab(smi)
                 elif isInChI(s):
                     ctab = inchi2ctab(s)
+                elif isctab(s):
+                    ctab = s
                 else:
                     ctab = string2ctab(s)
                     if not ctab:
                         smi = name2smi(s)
                         ctab = smi2ctab(smi)
-            elif type == 'image':
+            elif typ == 'image':
                 ctab = image2ctab(s)
             else:
+                print 'unknown type:',typ
                 self.ShowNothing()
                 self.Refresh(True)
 
@@ -320,6 +333,7 @@ class MyFrame (wx.Frame):
                     # print self.smiles
                     imag = ctab2image(ctab, self.smiles)
                 except:
+                    traceback.print_exc()
                     self.ShowNothing()
                     self.Refresh(True)
                 try:
@@ -327,6 +341,7 @@ class MyFrame (wx.Frame):
                     self.bmp = myWxImage.ConvertToBitmap()
                     self.Refresh(True)
                 except:
+                    traceback.print_exc()
                     self.ShowNothing()
                     self.Refresh(True)
             else:
@@ -382,19 +397,19 @@ class MyFrame (wx.Frame):
         clipboard = wx.Clipboard()
         if clipboard.Open():
             if clipboard.IsSupported(wx.DataFormat(wx.DF_TEXT)):
-                type = 'text'
+                typ = 'text'
                 data = wx.TextDataObject()
                 clipboard.GetData(data)
-                s = str(data.GetText().encode('utf-8')).strip()
+                s = str(data.GetText().encode('utf-8'))
                 clipboard.Close()
-                return s, type
+                return s, typ
             elif clipboard.IsSupported(wx.DataFormat(wx.DF_BITMAP)):
-                type = 'image'
+                typ = 'image'
                 data = wx.BitmapDataObject()
                 clipboard.GetData(data)
                 img = wx.ImageFromBitmap(data.GetBitmap())
                 clipboard.Close()
-                return img, type
+                return img, typ
             else:
                 clipboard.Close()
                 return None, None
@@ -407,6 +422,7 @@ class MyFrame (wx.Frame):
                 dc = wx.PaintDC(self)
                 dc.DrawBitmap(self.bmp, 0, 0, True)
             except:
+                traceback.print_exc()
                 self.ShowNothing()
         
     def ShowNothing(self):
