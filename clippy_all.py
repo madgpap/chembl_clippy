@@ -58,7 +58,7 @@ def smi2ctab(smi):
     ctab = None
     try:
         WS_URL = Settings.Instance().getBaseURL() + '/smiles2ctab/{}'
-        ctab = urllib2.urlopen(WS_URL.format(base64.b64encode(smi))).read()
+        ctab = urllib2.urlopen(WS_URL.format(base64.urlsafe_b64encode(smi))).read()
     except:
         pass
     return ctab
@@ -68,7 +68,7 @@ def ctab2smi(ctab):
     cansmi = None
     WS_URL = Settings.Instance().getBaseURL() + '/ctab2smiles/{}'
     try:
-        cansmi = urllib2.urlopen(WS_URL.format(base64.b64encode(ctab))).read()
+        cansmi = urllib2.urlopen(WS_URL.format(base64.urlsafe_b64encode(ctab))).read()
     except:
         pass
     return cansmi
@@ -82,7 +82,7 @@ def ctab2image(ctab, name):
         legend = name
     WS_URL = Settings.Instance().getBaseURL() + '/ctab2image/{0}/{1}'
     try:
-        img = urllib2.urlopen(WS_URL.format(base64.b64encode(ctab), IMG_SIZE)).read()
+        img = urllib2.urlopen(WS_URL.format(base64.urlsafe_b64encode(ctab), IMG_SIZE)).read()
     except:
         raise
     return img
@@ -94,7 +94,7 @@ def string2ctab(s):
     WS_URL = Settings.Instance().getBaseURL() + '/smiles2ctab/{}'
     if (len(s) <= 250) and (" " not in s) and ("\n" not in s):
         try:
-            ctab = urllib2.urlopen(WS_URL.format(base64.b64encode(s))).read()
+            ctab = urllib2.urlopen(WS_URL.format(base64.urlsafe_b64encode(s))).read()
         except:
             raise
     return ctab
@@ -104,7 +104,7 @@ def ctab2inchi(ctab):
     inchi = None
     WS_URL = Settings.Instance().getBaseURL() + '/ctab2inchi/{}'
     try:
-        inchi = urllib2.urlopen(WS_URL.format(base64.b64encode(ctab))).read()
+        inchi = urllib2.urlopen(WS_URL.format(base64.urlsafe_b64encode(ctab))).read()
     except:
         pass
     return inchi
@@ -114,7 +114,7 @@ def inchi2ctab(inchi):
     ctab = None
     WS_URL = Settings.Instance().getBaseURL() + '/inchi2ctab/{}'
     try:
-        ctab = urllib2.urlopen(WS_URL.format(base64.b64encode(inchi))).read()
+        ctab = urllib2.urlopen(WS_URL.format(base64.urlsafe_b64encode(inchi))).read()
     except:
         pass
     return ctab
@@ -124,7 +124,7 @@ def inchi2inchiKey(inchi):
     inchikey = None
     WS_URL = Settings.Instance().getBaseURL() + '/inchi2inchiKey/{}'
     try:
-        inchikey = urllib2.urlopen(WS_URL.format(base64.b64encode(inchi))).read()
+        inchikey = urllib2.urlopen(WS_URL.format(base64.urlsafe_b64encode(inchi))).read()
     except:
         pass
     return inchikey
