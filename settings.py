@@ -3,7 +3,7 @@ from singleton import Singleton
 @Singleton
 class Settings:
     def __init__(self):
-        self.host = '10.7.32.34'
+        self.host = 'localhost'
         self.port = '8079'
 
     def getHost(self):
