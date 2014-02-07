@@ -29,7 +29,7 @@ setup(
     classifiers=['Development Status :: 2 - Pre-Alpha',
                  'Environment :: MacOS X',
                  'Environment :: Win32 (MS Windows)',
-                 'Environment :: X11 Applications'
+                 'Environment :: X11 Applications',
                  'Intended Audience :: Science/Research',
                  'License :: OSI Approved :: MIT License',
                  'Operating System :: Microsoft :: Windows',
