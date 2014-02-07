@@ -21,7 +21,8 @@ setup(
     license='MIT',
     packages=['chembl_clippy'],
     long_description=open('README.md').read(),
-    install_requires=['chembl_beaker',],
+    install_requires=['chembl_beaker',
+        'wxPython',],
     package_data={
         'chembl_beaker': ['art/*'],
         },
