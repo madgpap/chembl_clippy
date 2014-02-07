@@ -12,7 +12,7 @@ except ImportError:
 
 setup(
     name='chembl_clippy',
-    version='0.1.1',
+    version='0.1.2',
     scripts=['chembl_clippy/clippy_all.py'],
     author='George Papadatos',
     author_email='georgep@ebi.ac.uk',
