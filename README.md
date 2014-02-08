@@ -38,8 +38,11 @@ Before this, please make sure you have `wxPython` installed in your system, you 
 
     import wx
     
-If this passes without any problems you can install clippy via `PIP`. If not install wxPython:
+If this passes without any problems you can install clippy via `PIP`. If not install `wxPython`:
 
     sudo apt-get install python-wxgtk2.8 python-wxtools wx2.8-i18n libwxgtk2.8-dev libgtk2.0-dev
 
 #### Windows
+
+Instuctions for Linux are valid but to install `wxPython` you have it download from here:
+http://www.wxpython.org/download.php
