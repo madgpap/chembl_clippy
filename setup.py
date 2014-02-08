@@ -17,7 +17,7 @@ except ImportError:
 
 setup(
     name='chembl_clippy',
-    version='0.1.5',
+    version='0.1.6',
     scripts=['chembl_clippy/clippy_all.py'],
     author='George Papadatos',
     author_email='georgep@ebi.ac.uk',

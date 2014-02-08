@@ -16,7 +16,7 @@ import platform
 import chembl_clippy
 from chembl_clippy.settings import Settings
 
-ART = os.path.join(os.path.split(chembl_clippy.__file__), 'art')
+ART = os.path.join(os.path.split(chembl_clippy.__file__)[0], 'art')
 
 IMG_SIZE = 500
 
