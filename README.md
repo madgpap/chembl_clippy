@@ -26,3 +26,20 @@ The application was written in Python using wxPython and is natively cross-platf
 Clippy uses web services calls mainly to mnowotka's [Beaker server](https://github.com/mnowotka/chembl_beaker).
 Therefore, you'll need a running instance of Beaker in your network.
 Clipper comes also packaged for MacOS. As a result, the packaged version doesn't have any other dependencies whatsoever (apart from a network connection and an Apple machine).
+
+### Installation
+#### MacOS
+#### Linux
+The best way to install clippy on Linux is to use `PIP`:
+
+    pip install chembl_clippy
+    
+Before this, please make sure you have `wxPython` installed in your system, you can check it by opening python intepreter and typing:
+
+    import wx
+    
+If this passes without any problems you can install clippy via `PIP`. If not install wxPython:
+
+    sudo apt-get install python-wxgtk2.8 python-wxtools wx2.8-i18n libwxgtk2.8-dev libgtk2.0-dev
+
+#### Windows
