@@ -28,7 +28,7 @@ setup(
     long_description=open('README.md').read(),
     install_requires=['requests',],
     package_data={
-        'chembl_beaker': ['art/*'],
+        'chembl_clippy': ['art/*'],
         },
     include_package_data=False,
     classifiers=['Development Status :: 2 - Pre-Alpha',

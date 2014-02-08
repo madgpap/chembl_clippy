@@ -11,10 +11,12 @@ import requests
 import base64
 import urllib2
 import StringIO
-
+import os, sys
 import platform
-
+import chembl_clippy
 from chembl_clippy.settings import Settings
+
+ART = os.path.join(os.path.split(chembl_clippy.__file__), 'art')
 
 IMG_SIZE = 500
 
@@ -205,7 +207,7 @@ class ServerDialog(wx.Dialog):
 class MyFrame (wx.Frame):
     def __init__(self):
         wx.Frame.__init__ (self, None, title="ChEMBL Clippy v1.2", style=wx.DEFAULT_FRAME_STYLE | wx.STAY_ON_TOP, size=SIZES[SYS])
-        self.SetIcon(wx.Icon('./art/clipper.ico', wx.BITMAP_TYPE_ICO))
+        self.SetIcon(wx.Icon(os.path.join(ART, 'clipper.ico'), wx.BITMAP_TYPE_ICO))
                
         filemenu = wx.Menu()
         
@@ -232,7 +234,7 @@ class MyFrame (wx.Frame):
         filemenu.AppendSeparator()
 
         m_quit = wx.MenuItem(filemenu, 109, '&Quit\tCtrl+Q', 'Quit the Application')
-        m_quit.SetBitmap(wx.Image('./art/exit.png', wx.BITMAP_TYPE_PNG).ConvertToBitmap())
+        m_quit.SetBitmap(wx.Image(os.path.join(ART, 'exit.png'), wx.BITMAP_TYPE_PNG).ConvertToBitmap())
         filemenu.AppendItem(m_quit)
         
         menubar = wx.MenuBar()
@@ -261,7 +263,7 @@ class MyFrame (wx.Frame):
 
     def OnAbout(self, event):
         info = wx.AboutDialogInfo()
-        info.SetIcon(wx.Icon('./art/clipper.ico', wx.BITMAP_TYPE_ICO))
+        info.SetIcon(wx.Icon(os.path.join(ART, 'clipper.ico'), wx.BITMAP_TYPE_ICO))
         info.SetName('ChEMBL Clippy')
         info.SetVersion('1.2')
         info.AddDeveloper('George Papadatos')
