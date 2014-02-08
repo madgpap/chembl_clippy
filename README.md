@@ -25,10 +25,13 @@ Here's a list of input formats that are read from clipboard and rendered in Clip
 The application was written in Python using wxPython and is natively cross-platform. It has been tested on Mac Mountain Lion, Windows XP and Ubuntu 12.04 machines.
 Clippy uses web services calls mainly to mnowotka's [Beaker server](https://github.com/mnowotka/chembl_beaker).
 Therefore, you'll need a running instance of Beaker in your network.
-Clipper comes also packaged for MacOS. As a result, the packaged version doesn't have any other dependencies whatsoever (apart from a network connection and an Apple machine).
+Clipper comes also [packaged for MacOS](https://dl.dropboxusercontent.com/u/10967207/clippy.zip). As a result, the packaged version doesn't have any other dependencies whatsoever (apart from a network connection and an Apple machine).
 
 ### Installation
 #### MacOS
+
+Just download the app from [here](https://dl.dropboxusercontent.com/u/10967207/clippy.zip).
+
 #### Linux
 The best way to install clippy on Linux is to use `PIP`:
 
