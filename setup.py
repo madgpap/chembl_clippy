@@ -4,6 +4,11 @@
 import sys
 
 try:
+    import wx
+except ImportError:
+    print "wxPython is not installed. For instructions, please visit http://wiki.wxpython.org/How%20to%20install%20wxPython"
+
+try:
     from setuptools import setup
 except ImportError:
     from ez_setup import use_setuptools
@@ -12,7 +17,7 @@ except ImportError:
 
 setup(
     name='chembl_clippy',
-    version='0.1.2',
+    version='0.1.3',
     scripts=['chembl_clippy/clippy_all.py'],
     author='George Papadatos',
     author_email='georgep@ebi.ac.uk',
@@ -21,8 +26,7 @@ setup(
     license='MIT',
     packages=['chembl_clippy'],
     long_description=open('README.md').read(),
-    install_requires=['chembl_beaker',
-        'wxPython',],
+    install_requires=['requests',],
     package_data={
         'chembl_beaker': ['art/*'],
         },

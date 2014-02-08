@@ -1,4 +1,4 @@
-from singleton import Singleton
+from chembl_clippy.singleton import Singleton
 
 @Singleton
 class Settings:
