@@ -6,6 +6,9 @@ Clippy is a simple desktop application that renders chemical structures using di
 The key thing is that the app reads the input directly from your clipboard (hence the name clippy) rather than a file.
 Once you have a rendered structure, you can export it in different formats (via the clipboard again).
 
+[![Downloads](https://pypip.in/v/chembl_clippy/badge.png)](https://pypi.python.org/pypi/epyper)
+[![Number of PyPI downloads](https://pypip.in/d/chembl_clippy/badge.png)](https://crate.io/packages/epyper/)
+
 ### Why should one prefer it to other free viewers?
 Apart from being Open Source and fully configurable, Clippy has some features currently missing from other viewer, such as the ChEMBL ID, name and InChIKey look-ups, as well as image and name conversions.  
 Furthermore, the clipboard interface makes Clippy really convenient when one just wants to quickly check a structure. 
