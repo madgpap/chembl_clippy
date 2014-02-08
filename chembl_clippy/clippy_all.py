@@ -14,7 +14,7 @@ import StringIO
 
 import platform
 
-from settings import Settings
+from chembl_clippy.settings import Settings
 
 IMG_SIZE = 500
 
